@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardGameManager : BaseGameManager {
+public class CardGameManager : BaseGameManager 
+{
 
 	
 
@@ -25,6 +26,7 @@ public class CardGameManager : BaseGameManager {
 		var baseVal = base.PlayLevelRoutine();
 
 		yield return StartCoroutine( baseVal );
+
 	}
 
 

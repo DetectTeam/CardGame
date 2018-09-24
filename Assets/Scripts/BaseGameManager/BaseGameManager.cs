@@ -94,6 +94,8 @@ public class BaseGameManager : MonoBehaviour
 	{
 		Debug.Log( "Starting Game...." );
 		m_hasLevelStarted = true;
+
+		
 	}
 
 	//Pause Game

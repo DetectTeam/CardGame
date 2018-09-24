@@ -18,13 +18,12 @@ public class Rotate : MonoBehaviour
         z = 0.0f;
 		y = 0.0f;
         rotateX = true;
-        rotationSpeed = 75.0f;
+        rotationSpeed = 100.0f;
     }
 
     void FixedUpdate()
     {
-        
-        y -= Time.deltaTime * rotationSpeed;
+        y += Time.deltaTime * rotationSpeed;
 
         if (y > 360.0f)
         {
