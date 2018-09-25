@@ -53,7 +53,7 @@ public class CardRotation : MonoBehaviour
                 passedThroughColliderOnCard = true;
         }
 
-		 Debug.Log("TotalHits: " + hits.Length); 
+	
         if (passedThroughColliderOnCard!= showingFront)
         {
 			

@@ -9,7 +9,7 @@ public class Rotate : MonoBehaviour
     private float z;
 
 	private float y;
-    private bool rotateX;
+    private bool rotateY;
     private float rotationSpeed;
 
     void Start()
@@ -17,21 +17,31 @@ public class Rotate : MonoBehaviour
         x = 0.0f;
         z = 0.0f;
 		y = 0.0f;
-        rotateX = true;
+        rotateY = true;
         rotationSpeed = 100.0f;
+
+
     }
 
     void FixedUpdate()
     {
-        y += Time.deltaTime * rotationSpeed;
 
+        if( rotateY ) 
+            y += Time.deltaTime * rotationSpeed;
+
+        if( y >= 180.0f )
+                rotateY = false;
+        
         if (y > 360.0f)
         {
+            
             y = 0.0f;
            
         }
        
         transform.localRotation = Quaternion.Euler(0, y, 0);
     }
+
+   
 
 }

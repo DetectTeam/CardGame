@@ -317,7 +317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.3, y: 128.3}
+  m_AnchoredPosition: {x: -102, y: 128.3}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340202172
@@ -743,6 +743,75 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &825221396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825221397}
+  - component: {fileID: 825221399}
+  - component: {fileID: 825221398}
+  m_Layer: 5
+  m_Name: ShapeThree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &825221397
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825221396}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1160300174}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 84, y: 116}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &825221398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825221396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300004, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &825221399
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825221396}
+  m_CullTransparentMesh: 0
 --- !u!1 &1010475003
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,15 +994,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e2d1fe992ce492590081ac621dc5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapeOne: {fileID: 340202172}
-  shapeTwo: {fileID: 1481917496}
-  shapeOneColour: {r: 0, g: 0, b: 0, a: 0}
-  shapeTwoColour: {r: 0, g: 0, b: 0, a: 0}
-  randomNum: 0
-  shapes:
-  - {fileID: 21300000, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
-  - {fileID: 21300002, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
-  - {fileID: 21300004, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
+  images:
+  - {fileID: 340202172}
+  - {fileID: 1481917496}
+  - {fileID: 825221398}
+  cards:
+  - name: Card1
+    match: 1
+    shapes:
+    - name: Shape1
+      color: {r: 0.082858644, g: 0.4735015, b: 0.9245283, a: 0}
+      sprite: {fileID: 21300000, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
+    - name: Shape2
+      color: {r: 0.9339623, g: 0.022027409, b: 0.022027409, a: 0}
+      sprite: {fileID: 21300002, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
+    - name: Shape3
+      color: {r: 0.62574905, g: 0.06728373, b: 0.6792453, a: 0}
+      sprite: {fileID: 21300004, guid: f0c9ee3723f8c4b7b9298ab4170057cf, type: 3}
+  cardCount: 0
 --- !u!1 &1371143115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1417,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1619060765327498, guid: 1072b704693f946458684a0b7a34c516, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716855224290128, guid: 1072b704693f946458684a0b7a34c516, type: 2}
       propertyPath: m_IsActive
