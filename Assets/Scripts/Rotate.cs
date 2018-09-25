@@ -12,6 +12,18 @@ public class Rotate : MonoBehaviour
     private bool rotateY;
     [SerializeField] private float rotationSpeed;
 
+    void OnEnable()
+    {
+        Messenger<float, float>.AddListener( "RotateCard", RotateCard );
+       
+    }
+
+    void OnDisable()
+    {
+        Messenger<float, float>.RemoveListener( "RotateCard", RotateCard );
+        
+    }
+
     void Start()
     {
         x = 0.0f;
@@ -25,26 +37,29 @@ public class Rotate : MonoBehaviour
     void FixedUpdate()
     {
 
-        if( rotateY ) 
-        {
-            y += Time.deltaTime * rotationSpeed;
-            transform.localRotation = Quaternion.Euler(0, y, 0);
-        }
+        // if( rotateY &&  y < 180 ) 
+        // {
+        //     y += Time.deltaTime * rotationSpeed;
+
+        //     if( y >= 360 )
+        //     {
+        //         y = 0;
+        //     }
+            
+        //     transform.localRotation = Quaternion.Euler(0, y, 0);
+        // }
+
+         //if( rotateY )
+           // iTween.RotateTo( gameObject, new Vector3( 0, 180.0f, 0 ), 0.6f );
        
         
     }
 
-    public void StartRotation()
+    public void RotateCard( float time , float deg  )
     {
-        Debug.Log( "Starting Rotation" );
+        Debug.Log( "ROTATING CARD..........." );
+        iTween.RotateAdd( gameObject, new Vector3( 0, 180.0f, 0 ), time );
         rotateY = true;
-    }
-
-    public void StopRotation()
-    {
-         Debug.Log( "Stopping Rotation " + y );
-
-        rotateY = false;
     }
 
    

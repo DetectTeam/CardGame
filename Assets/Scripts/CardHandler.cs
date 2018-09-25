@@ -42,17 +42,17 @@ public class CardHandler : MonoBehaviour
 		{
 		    Card card = cards[ cardCount ];
 
-			Debug.Log( card.name );
+			//Debug.Log( card.name );
 			title.text = card.name;
-			Debug.Log( card.match );
-			Debug.Log( card.shapes.Length );
+			//Debug.Log( card.match );
+			//Debug.Log( card.shapes.Length );
 
 
 			for( int x = 0; x < card.shapes.Length; x++ )
 			{
-				Debug.Log( "Shape Name: " + card.shapes[x].name );
-				Debug.Log( "Shape sprite: " + card.shapes[x].sprite );
-				Debug.Log( "Shape colour: " + card.shapes[x].color );
+				//Debug.Log( "Shape Name: " + card.shapes[x].name );
+				//Debug.Log( "Shape sprite: " + card.shapes[x].sprite );
+				//Debug.Log( "Shape colour: " + card.shapes[x].color );
 				images[ x ].sprite = card.shapes[x].sprite;
 				images[ x ].color = card.shapes[x].color;
 				

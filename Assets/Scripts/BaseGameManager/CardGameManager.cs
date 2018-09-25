@@ -26,24 +26,27 @@ public class CardGameManager : BaseGameManager
 	{
 		var baseVal = base.PlayLevelRoutine();
 
-		float waitTime = 0.70f;
-		float counter = 0;
+		float waitTime = 1.0f;
+		float degrees  =  180.0f;
+		
 
 		yield return StartCoroutine( baseVal );
 
-		rotator.StartRotation();
-		//Messenger.Broadcast( "StartRotation" );
+		yield return new WaitForSeconds( waitTime );
 
-		 while( counter < waitTime )
-		 {
-	 	 	  counter += Time.deltaTime;
-              yield return null; //Don't freeze Unity
-		 }
-		 
-		counter = 0;
+		Messenger<float,float>.Broadcast( "RotateCard", waitTime , 0 );
 
-		rotator.StopRotation();
-		//Messenger.Broadcast( "StopRotation" );
+		yield return new WaitForSeconds( waitTime * 3 );
+
+		Messenger<float,float>.Broadcast( "RotateCard", waitTime , 0 );
+		
+	
+	
+	
+		
+	
+
+	
 
 		//Messenger.Broadcast( "ShowPrompt" );
 
