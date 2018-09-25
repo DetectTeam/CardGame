@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardHandler : MonoBehaviour 
 {
@@ -12,6 +13,10 @@ public class CardHandler : MonoBehaviour
 
 	[SerializeField] private int cardCount = 0;
 
+	[SerializeField] private Text title;
+
+	[SerializeField] private TextMeshProUGUI userPrompt; //Display Memorize prompt to user.
+
 
 	void OnEnable()
 	{
@@ -21,9 +26,16 @@ public class CardHandler : MonoBehaviour
 
 		cardCount ++;
 
+		Messenger.AddListener( "ShowPrompt" , ShowPrompt );
+
 	}
 
-	void CardSetup()
+	void OnDisable()
+	{
+		Messenger.RemoveListener( "ShowPrompt" , ShowPrompt );
+	}
+
+	private void CardSetup()
 	{
 		
 		if( cardCount < cards.Length )
@@ -31,6 +43,7 @@ public class CardHandler : MonoBehaviour
 		    Card card = cards[ cardCount ];
 
 			Debug.Log( card.name );
+			title.text = card.name;
 			Debug.Log( card.match );
 			Debug.Log( card.shapes.Length );
 
@@ -42,10 +55,23 @@ public class CardHandler : MonoBehaviour
 				Debug.Log( "Shape colour: " + card.shapes[x].color );
 				images[ x ].sprite = card.shapes[x].sprite;
 				images[ x ].color = card.shapes[x].color;
+				
+				
 			}
 
 		}
 
+	}
+
+	private void ShowPrompt()
+	{
+		Debug.Log( "Showing Prompt..." );
+		userPrompt.gameObject.SetActive( true );
+	}
+
+	private void HidePrompt()
+	{
+		userPrompt.gameObject.SetActive( false );
 	}
 	
 	

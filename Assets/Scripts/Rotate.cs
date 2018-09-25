@@ -10,16 +10,15 @@ public class Rotate : MonoBehaviour
 
 	private float y;
     private bool rotateY;
-    private float rotationSpeed;
+    [SerializeField] private float rotationSpeed;
 
     void Start()
     {
         x = 0.0f;
         z = 0.0f;
 		y = 0.0f;
-        rotateY = true;
-        rotationSpeed = 100.0f;
-
+        rotateY = false;
+        rotationSpeed = 250.0f;
 
     }
 
@@ -27,19 +26,25 @@ public class Rotate : MonoBehaviour
     {
 
         if( rotateY ) 
-            y += Time.deltaTime * rotationSpeed;
-
-        if( y >= 180.0f )
-                rotateY = false;
-        
-        if (y > 360.0f)
         {
-            
-            y = 0.0f;
-           
+            y += Time.deltaTime * rotationSpeed;
+            transform.localRotation = Quaternion.Euler(0, y, 0);
         }
        
-        transform.localRotation = Quaternion.Euler(0, y, 0);
+        
+    }
+
+    public void StartRotation()
+    {
+        Debug.Log( "Starting Rotation" );
+        rotateY = true;
+    }
+
+    public void StopRotation()
+    {
+         Debug.Log( "Stopping Rotation " + y );
+
+        rotateY = false;
     }
 
    
