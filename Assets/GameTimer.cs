@@ -7,6 +7,10 @@ public class GameTimer : MonoBehaviour
 {
 
 	[SerializeField] private TextMeshProUGUI timerText;
+	[SerializeField] private bool isTimerRunning;
+
+
+	private float t;
 
 	private void OnEnable()
 	{
@@ -21,20 +25,30 @@ public class GameTimer : MonoBehaviour
 	
 	
 	// Update is called once per frame
-	void Update () 
+	private IEnumerator IECountDown()
 	{
-		
+		float count = 5; 
+
+		while( count > 0 )
+		{
+			count -= Time.deltaTime;
+			timerText.text = count.ToString( "F2" );
+			yield return null;
+		}
 	}
 
 	private void StartTimer()
 	{
 		Debug.Log( "Starting Timer" );
 		timerText.gameObject.SetActive( true );
+		isTimerRunning = true;
+		StartCoroutine( IECountDown() );
 	}
 
 	private void StopTimer()
 	{
 		Debug.Log( "Stopping Timer" );
 		timerText.gameObject.SetActive( false );
+		isTimerRunning = false;
 	}
 }
