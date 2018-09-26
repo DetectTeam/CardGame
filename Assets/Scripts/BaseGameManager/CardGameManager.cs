@@ -45,7 +45,7 @@ public class CardGameManager : BaseGameManager
 		
 
 			Debug.Log( "Entering Memory Phase." );
-			Messenger<string>.Broadcast( "SetMessage" , "Memory Phase" );
+			Messenger<string>.Broadcast( "SetMessage" , "Memory Phase" ); //Test Messages
 			Messenger<float,float>.Broadcast( "RotateCard", (waitTime * 0.5f) , 0 );
 
 			yield return new WaitForSeconds( waitTime * 0.1f );
@@ -61,12 +61,18 @@ public class CardGameManager : BaseGameManager
 			yield return new WaitForSeconds( 0.55f );  //Flip the card in 0.9 seconds
 
 			Debug.Log( "Entering Guess Phase" );
-			Messenger<string>.Broadcast( "SetMessage" , "Guess Phase" );
+			Messenger<string>.Broadcast( "SetMessage" , "Guess Phase" ); //Test Messages
 			Messenger<float,float>.Broadcast( "RotateCard", 0.35f , 0 );
-
+			
 			yield return new WaitForSeconds( 0.35f );
+
+			Messenger.Broadcast( "StartTimer" ); //Start Count Down
+
 			yield return new WaitForSeconds( guessTime );  //Guess time 5 seconds.
-			Messenger<string>.Broadcast( "SetMessage" , "Times Up" );
+			
+			Messenger<string>.Broadcast( "SetMessage" , "Times Up" ); //Test Messages
+
+			Messenger.Broadcast( "StopTimer" );
 
 			Messenger<float,float>.Broadcast( "RotateCard", 0.45f , 0 );
 
