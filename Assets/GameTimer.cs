@@ -49,6 +49,7 @@ public class GameTimer : MonoBehaviour
 	{
 		Debug.Log( "Stopping Timer" );
 		timerText.gameObject.SetActive( false );
+		//timerText.text = "Times Up"; 
 		isTimerRunning = false;
 	}
 }

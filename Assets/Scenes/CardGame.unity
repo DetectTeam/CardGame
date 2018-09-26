@@ -1453,6 +1453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510d09100c4494efaba2e39f11480732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 132489702}
+  isTimerRunning: 0
 --- !u!4 &1134048576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4202752749224858, guid: 1072b704693f946458684a0b7a34c516,
