@@ -34,30 +34,29 @@ public class Rotate : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
+    // void FixedUpdate()
+    // {
 
-        // if( rotateY &&  y < 180 ) 
-        // {
-        //     y += Time.deltaTime * rotationSpeed;
+    //     // if( rotateY &&  y < 180 ) 
+    //     // {
+    //     //     y += Time.deltaTime * rotationSpeed;
 
-        //     if( y >= 360 )
-        //     {
-        //         y = 0;
-        //     }
+    //     //     if( y >= 360 )
+    //     //     {
+    //     //         y = 0;
+    //     //     }
             
-        //     transform.localRotation = Quaternion.Euler(0, y, 0);
-        // }
+    //     //     transform.localRotation = Quaternion.Euler(0, y, 0);
+    //     // }
 
-         //if( rotateY )
-           // iTween.RotateTo( gameObject, new Vector3( 0, 180.0f, 0 ), 0.6f );
+    //      //if( rotateY )
+    //        // iTween.RotateTo( gameObject, new Vector3( 0, 180.0f, 0 ), 0.6f );
        
         
-    }
+    // }
 
     public void RotateCard( float time , float deg  )
     {
-        Debug.Log( "ROTATING CARD..........." );
         iTween.RotateAdd( gameObject, new Vector3( 0, 180.0f, 0 ), time );
         rotateY = true;
     }
