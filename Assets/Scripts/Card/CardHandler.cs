@@ -15,6 +15,8 @@ public class CardHandler : MonoBehaviour
 
 	[SerializeField] private Text title;
 
+	[SerializeField] private bool isMatch;
+
 	[SerializeField] private TextMeshProUGUI userPrompt; //Display Memorize prompt to user.
 
 
@@ -43,10 +45,11 @@ public class CardHandler : MonoBehaviour
 		if( cardCount < cards.Length )
 		{
 		    Card card = cards[ cardCount ];
+			
 
 			//Debug.Log( card.name );
 			title.text = card.name;
-			//Debug.Log( card.match );
+			isMatch = card.match;
 			//Debug.Log( card.shapes.Length );
 
 
@@ -85,17 +88,19 @@ public class CardHandler : MonoBehaviour
 			//Check if match is set to true
 			//If it is then the user is correct
 			//else user is wrong
-			isUserRight = 1;
+			isUserRight = 2;
+			Debug.Log( "MATCH:::: " + isMatch );
 		}
 		else if( swipeDirection.Equals( "Left" ) )
 		{
 			//Left = no
 			//if match is set to false then user is correct
 			//else user is wrong
-			isUserRight = 2;
+			isUserRight = 1;
+			Debug.Log( "MATCH:::: " + isMatch );
 		}
 
-		Messenger<int>.Broadcast( "UserDecision" , isUserRight );
+		Messenger<int, bool>.Broadcast( "UserDecision" , isUserRight, isMatch );
 	}
 	
 	

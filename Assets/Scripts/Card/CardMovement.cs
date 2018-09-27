@@ -10,15 +10,18 @@ public class CardMovement : MonoBehaviour
 {
 
 	[SerializeField] private string movementDirection;
+	[SerializeField] private float movementSpeed = 1.0f;
 
 	private void OnEnable()
 	{
 		Messenger<string>.AddListener( "SwipeDirection" , Move );
+		Messenger.AddListener( "ResetCard" , ResetCardPosition );
 	}
 
 	private void OnDisable()
 	{
 		Messenger<string>.RemoveListener( "SwipeDirection" , Move );
+		Messenger.AddListener( "ResetCard" , ResetCardPosition );
 	}
 
 	private void Move( string direction )
@@ -44,7 +47,13 @@ public class CardMovement : MonoBehaviour
 
 	private void TweenMove( float xDirection )
 	{
-		iTween.MoveTo( gameObject, new Vector3( xDirection, gameObject.transform.position.y, gameObject.transform.position.z  ), 2.0f );
+		iTween.MoveTo( gameObject, new Vector3( xDirection, gameObject.transform.position.y, gameObject.transform.position.z  ), movementSpeed );
+	
+	}
+
+	private void ResetCardPosition()
+	{
+		iTween.MoveTo( gameObject, new Vector3( 0, gameObject.transform.position.y, gameObject.transform.position.z  ), movementSpeed );
 	
 	}
 	
