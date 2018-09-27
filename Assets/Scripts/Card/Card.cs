@@ -9,6 +9,8 @@ public class Card
 	public bool match;
 	public Shape[] shapes;
 
+	public Shape[] matchShapes;
+
 }
 
 

@@ -44,12 +44,12 @@ public class CardGameManager : BaseGameManager
 	public override IEnumerator PlayLevelRoutine()
 	{
 		var baseVal = base.PlayLevelRoutine();
-		float levelCount = 1;
+		int levelCount = 0 ;
 		float waitTime = 1.0f;
 		float degrees  =  180.0f;
 		float counter = 0.0f;
 
-		while( levelCount < 11 )
+		while( levelCount < 2 )
 		{
 			userDecision = 0;
 
@@ -66,7 +66,8 @@ public class CardGameManager : BaseGameManager
 			Messenger<float,float>.Broadcast( "RotateCard", ( waitTime * 0.5f ) , 0 );
 
 			yield return new WaitForSeconds( waitTime * 0.1f );
-			Messenger<string>.Broadcast( "SetTitle" , "Level " + levelCount );
+			Messenger<int>.Broadcast( "LoadCard" ,  levelCount );
+			//Messenger<string>.Broadcast( "SetTitle" , "Level " + levelCount );
 			yield return new WaitForSeconds( waitTime * 0.4f );
 
 			yield return new WaitForSeconds( timeToMemorize ); // 2 seconds to memorize the shapes
@@ -80,14 +81,23 @@ public class CardGameManager : BaseGameManager
 			yield return new WaitForSeconds( 0.55f );  //Flip the card in 0.9 seconds
 
 			Debug.Log( "Entering Guess Phase" );
+			
 			Messenger<string>.Broadcast( "SetMessage" , "Guess Phase" ); //Test Messages
 			Messenger<float,float>.Broadcast( "RotateCard", 0.35f , 0 );
 			
-			yield return new WaitForSeconds( 0.35f );
+			
+			yield return new WaitForSeconds( 0.05f );
+
+			Messenger<int>.Broadcast( "LoadMatchCard" , levelCount ); //Load the Match card
+			
+			yield return new WaitForSeconds( 0.3f );
+
+			
 
 			
 			
 			//Guess Phase
+		
 			Messenger.Broadcast( "StartTimer" ); //Start Count Down
 
 			//yield return new WaitForSeconds( guessTime );  //Guess time 5 seconds.
