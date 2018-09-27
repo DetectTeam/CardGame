@@ -55,9 +55,9 @@ public class CardGameManager : BaseGameManager
 
 			yield return StartCoroutine( baseVal );
 
-			Messenger<string>.Broadcast( "SetMessage" , "New Level" ); //Test Message
 			
-			yield return new WaitForSeconds( waitTime );
+			
+			yield return new WaitForSecondsRealtime( waitTime );
 
 			Debug.Log( "Entering Memory Phase." );
 			Messenger<string>.Broadcast( "SetMessage" , "Memory Phase" ); //Test Messages
@@ -65,12 +65,12 @@ public class CardGameManager : BaseGameManager
 			//Memory phase . Show user card face for 2 seconds
 			Messenger<float,float>.Broadcast( "RotateCard", ( waitTime * 0.5f ) , 0 );
 
-			yield return new WaitForSeconds( waitTime * 0.1f );
+			yield return new WaitForSecondsRealtime( waitTime * 0.1f );
 			Messenger<int>.Broadcast( "LoadCard" ,  levelCount );
 			//Messenger<string>.Broadcast( "SetTitle" , "Level " + levelCount );
-			yield return new WaitForSeconds( waitTime * 0.4f );
+			yield return new WaitForSecondsRealtime( waitTime * 0.4f );
 
-			yield return new WaitForSeconds( timeToMemorize ); // 2 seconds to memorize the shapes
+			yield return new WaitForSecondsRealtime( timeToMemorize ); // 2 seconds to memorize the shapes
 
 			//Memory Phase Ends
 
@@ -78,7 +78,7 @@ public class CardGameManager : BaseGameManager
 			//Rotate 0.9 seconds
 			Messenger<float,float>.Broadcast( "RotateCard", 0.45f , 0 );
 
-			yield return new WaitForSeconds( 0.55f );  //Flip the card in 0.9 seconds
+			yield return new WaitForSecondsRealtime( 0.55f );  //Flip the card in 0.9 seconds
 
 			Debug.Log( "Entering Guess Phase" );
 			
@@ -86,11 +86,11 @@ public class CardGameManager : BaseGameManager
 			Messenger<float,float>.Broadcast( "RotateCard", 0.35f , 0 );
 			
 			
-			yield return new WaitForSeconds( 0.05f );
+			yield return new WaitForSecondsRealtime( 0.15f );
 
 			Messenger<int>.Broadcast( "LoadMatchCard" , levelCount ); //Load the Match card
 			
-			yield return new WaitForSeconds( 0.3f );
+			yield return new WaitForSecondsRealtime( 0.2f );
 
 			
 
@@ -100,7 +100,7 @@ public class CardGameManager : BaseGameManager
 		
 			Messenger.Broadcast( "StartTimer" ); //Start Count Down
 
-			//yield return new WaitForSeconds( guessTime );  //Guess time 5 seconds.
+			//yield return new WaitForSecondsRealtime( guessTime );  //Guess time 5 seconds.
 			//Wait for user to make decision . 5 seconds by default
 			
 			swipeManager.enabled = true; // Enable Touch Controls
@@ -123,7 +123,7 @@ public class CardGameManager : BaseGameManager
 					}
 
 				    Messenger.Broadcast( "StopTimer" );  //Stop the timer 
-					yield return new WaitForSeconds( 1.0f ); //wait for the card movement action to complete
+					yield return new WaitForSecondsRealtime( 1.0f ); //wait for the card movement action to complete
 					
 					//Reset Card Position
 					Messenger.Broadcast( "ResetCard" );
@@ -150,9 +150,9 @@ public class CardGameManager : BaseGameManager
 		
 			Messenger<float,float>.Broadcast( "RotateCard", 0.45f , 0 );
 
-			Messenger<string>.Broadcast( "SetMessage" , "New Level" ); //Test Messages
+		
 
-			yield return new WaitForSeconds( 3.0f );
+			yield return new WaitForSecondsRealtime( 1.0f );
 
 			levelCount ++;
 
