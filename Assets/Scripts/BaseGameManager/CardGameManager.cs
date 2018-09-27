@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class CardGameManager : BaseGameManager 
 {
-
 	[SerializeField] private Rotate rotator;
 	[SerializeField] private float transitionTime = 0.9f; // The Amout ot time to flip the card
 	[SerializeField] private float timeToMemorize = 2.0f; // The Amount of time to memorize the shapes on the card
-
 	[SerializeField] private float guessTime = 5.0f; // The Amount of time to guess if shapes match or not
+	[SerializeField] private SwipeManager swipeManager; //Script that manages all swipe input
+
+	[SerializeField] private int userDecision;
+
+
+	private void OnEnable()
+	{
+		Messenger<int>.AddListener( "UserDecision" , UserDecision );
+	}
+
+	private void OnDisable()
+	{
+		Messenger<int>.RemoveListener( "UserDecision" , UserDecision );
+	}
 
     public override void Start()
     {
         base.Start();
 
 		rotator = GameObject.Find( "Card" ).GetComponent<Rotate>();
+
+		swipeManager = GetComponent<SwipeManager>();
+		swipeManager.enabled = false;
     }
 
     public override IEnumerator StartLevelRoutine()
@@ -23,7 +38,6 @@ public class CardGameManager : BaseGameManager
 		var baseVal = base.StartLevelRoutine();
     
 		yield return StartCoroutine( baseVal );
-
 	}
 
 	public override IEnumerator PlayLevelRoutine()
@@ -32,17 +46,16 @@ public class CardGameManager : BaseGameManager
 		float levelCount = 1;
 		float waitTime = 1.0f;
 		float degrees  =  180.0f;
+		float counter = 0.0f;
 
 		while( levelCount < 11 )
 		{
-			
+		
 			yield return StartCoroutine( baseVal );
 
 			Messenger<string>.Broadcast( "SetMessage" , "New Level" );
 			
 			yield return new WaitForSeconds( waitTime );
-
-		
 
 			Debug.Log( "Entering Memory Phase." );
 			Messenger<string>.Broadcast( "SetMessage" , "Memory Phase" ); //Test Messages
@@ -51,8 +64,6 @@ public class CardGameManager : BaseGameManager
 			yield return new WaitForSeconds( waitTime * 0.1f );
 			Messenger<string>.Broadcast( "SetTitle" , "Level " + levelCount );
 			yield return new WaitForSeconds( waitTime * 0.4f );
-
-		
 
 			yield return new WaitForSeconds( timeToMemorize ); // 2 seconds to memorize the shapes
 
@@ -68,9 +79,47 @@ public class CardGameManager : BaseGameManager
 
 			Messenger.Broadcast( "StartTimer" ); //Start Count Down
 
-			yield return new WaitForSeconds( guessTime );  //Guess time 5 seconds.
+			//yield return new WaitForSeconds( guessTime );  //Guess time 5 seconds.
+			
+			
+			//Wait for user to make decision . 5 seconds by default
+			
+			swipeManager.enabled = true; // Enable Touch Controls
+			while( counter <= guessTime )
+			{
+				
+				if( userDecision > 0 )
+				{
+					Messenger.Broadcast( "StopTimer" );
+				}
+				
+				if( userDecision == 1 )
+				{
+					Debug.Log( "Correct" );
+					break;
+				}
+				else if( userDecision == 2 )
+				{
+					Debug.Log( "Incorrect" );
+					break;
+				}
+				
+				counter += Time.deltaTime;
+				yield return null;
+			}
+
+			
+
+			swipeManager.enabled = false; // Disable Touch Controls
+
+			counter = 0;
+
+			if( userDecision == 0 )
+			{
 			
 			Messenger<string>.Broadcast( "SetMessage" , "Times Up" ); //Test Messages
+			
+			}
 
 			Messenger.Broadcast( "StopTimer" );
 
@@ -87,6 +136,11 @@ public class CardGameManager : BaseGameManager
 
 		//Messenger.Broadcast( "ShowPrompt" );
 
+	}
+
+	private void UserDecision( int b )
+	{
+		userDecision = b;
 	}
 	
 }

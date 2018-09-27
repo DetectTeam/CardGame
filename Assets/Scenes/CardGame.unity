@@ -1376,6 +1376,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1850011374}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1010475006
@@ -1412,6 +1423,25 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010475003}
   m_CullTransparentMesh: 0
+--- !u!1 &1029329541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1057173314300006, guid: 314cbcc76c9d54e00a594ea233f255ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 223053994}
+--- !u!114 &1029329542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1029329541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828930ca53fa24e2ba81668eb6940ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchPosition: {x: 0, y: 0, z: 0}
+  swipeResistanceX: 50
+  swipeResistanceY: 100
 --- !u!1 &1105816275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2101,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 250
+--- !u!114 &1850011374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1850011368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90730099810c34e9c81a2a7ee82d82d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatY: {x: 0, y: 0, z: 0}
+  originalY: 0
+  originalX: 0
+  floatStrength: 0.1
+--- !u!114 &1850011375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1850011368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b773997659d2945978728f4c59257e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: 
 --- !u!1001 &2092790273
 Prefab:
   m_ObjectHideFlags: 0
@@ -2286,6 +2343,16 @@ Prefab:
     - target: {fileID: 1766162906497632, guid: 1072b704693f946458684a0b7a34c516, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224492447506883408, guid: 1072b704693f946458684a0b7a34c516,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224492447506883408, guid: 1072b704693f946458684a0b7a34c516,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1072b704693f946458684a0b7a34c516, type: 2}
